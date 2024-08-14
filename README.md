@@ -48,3 +48,23 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+
+## Migration
+
+```bash
+# create migration 
+$ npx sequelize-cli migration:generate --name <migration-name>
+```
+
+```bash
+# run migration
+$ npx sequelize-cli db:migrate   
+```
+
+```bash
+# undo latest migration
+$ npx sequelize-cli db:migrate:undo
+```
+
+Read more on [Sequelize docs](https://sequelize.org/docs/v6/other-topics/migrations/)
