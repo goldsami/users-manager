@@ -6,10 +6,7 @@ import { User } from './user.model';
 import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [
-    SequelizeModule.forFeature([User]), 
-    AuthModule,
-  ],
+  imports: [SequelizeModule.forFeature([User]), AuthModule],
   controllers: [UsersController],
   providers: [UsersService],
 })

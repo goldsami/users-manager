@@ -10,10 +10,10 @@ import { AuthGuard } from './auth.guard';
     AccountsModule,
     JwtModule.register({
       global: true,
-    })
+    }),
   ],
   providers: [AuthService, AuthGuard],
   controllers: [AuthController],
-  exports: [AuthGuard]
+  exports: [AuthGuard],
 })
 export class AuthModule {}

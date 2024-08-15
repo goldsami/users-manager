@@ -9,7 +9,7 @@ class UserDto {
   firstName: string;
 
   @IsNotEmpty()
-  lastName: string
+  lastName: string;
 
   @IsEmail()
   email: string;
@@ -31,6 +31,6 @@ export class UsersController {
   @UseGuards(AuthGuard)
   @Post('add-user')
   add(@Body() body: UserDto) {
-    return this._usersService.add(body)
+    return this._usersService.add(body);
   }
 }

@@ -12,27 +12,28 @@ export class UsersService {
   }
 
   findOne(id: string): Promise<User> {
-    return this._userModel.findByPk(id)
+    return this._userModel.findByPk(id);
   }
 
-  async add(userData: Pick<User, 'firstName' | 'lastName' | 'email' | 'phone'>): Promise<User> {
+  async add(
+    userData: Pick<User, 'firstName' | 'lastName' | 'email' | 'phone'>,
+  ): Promise<User> {
     const existingUser = await User.findOne({
       where: {
-        [Op.or]: [
-          {email: userData.email},
-          {phone: userData.phone},
-        ]
-      }
-    })
+        [Op.or]: [{ email: userData.email }, { phone: userData.phone }],
+      },
+    });
     if (existingUser) {
-      throw new ConflictException('User with such email or phone already exists')
+      throw new ConflictException(
+        'User with such email or phone already exists',
+      );
     }
     const date = new Date();
     const user = User.build({
       ...userData,
       createdAt: date,
       updatedAt: date,
-    })
-    return user.save()
+    });
+    return user.save();
   }
 }

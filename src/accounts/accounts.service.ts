@@ -4,22 +4,24 @@ import { InjectModel } from '@nestjs/sequelize';
 
 @Injectable()
 export class AccountsService {
-  constructor(@InjectModel(Account) private readonly _accountModel: typeof Account) {}
+  constructor(
+    @InjectModel(Account) private readonly _accountModel: typeof Account,
+  ) {}
 
-   findOne(login: string): Promise<Account | undefined> {
+  findOne(login: string): Promise<Account | undefined> {
     return this._accountModel.findOne({
-        where: { login }
-    })
+      where: { login },
+    });
   }
 
   add(login: string, password: string): Promise<Account> {
-      const date = new Date();
+    const date = new Date();
     const account = Account.build({
       login,
-      password ,
+      password,
       updatedAt: date,
       createdAt: date,
-    })
-    return account.save()
+    });
+    return account.save();
   }
 }
