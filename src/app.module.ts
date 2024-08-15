@@ -5,6 +5,9 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { User } from './users/user.model';
+import { AuthModule } from './auth/auth.module';
+import { AccountsModule } from './accounts/accounts.module';
+import { Account } from './accounts/account.model';
 
 @Module({
   imports: [
@@ -16,9 +19,11 @@ import { User } from './users/user.model';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_ROOT_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      models: [User],
+      models: [User, Account],
     }),
     UsersModule,
+    AuthModule,
+    AccountsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
