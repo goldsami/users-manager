@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { User } from './user.model';
 import { UsersService } from './users.service';
 import { IsNotEmpty, IsEmail, IsPhoneNumber } from 'class-validator';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 class UserDto {
   @IsNotEmpty()
@@ -21,11 +22,13 @@ class UserDto {
 export class UsersController {
   constructor(private readonly _usersService: UsersService) {}
 
+  @UseGuards(AuthGuard)
   @Get('get-user/:id')
   findOne(@Param('id') id: string): Promise<User> {
     return this._usersService.findOne(id);
   }
 
+  @UseGuards(AuthGuard)
   @Post('add-user')
   add(@Body() body: UserDto) {
     return this._usersService.add(body)

@@ -1,5 +1,4 @@
 import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
-import { Account } from '../accounts/account.model';
 import { AccountsService } from '../accounts/accounts.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService, JwtSignOptions } from '@nestjs/jwt';
