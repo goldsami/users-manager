@@ -68,3 +68,65 @@ $ npx sequelize-cli db:migrate:undo
 ```
 
 Read more on [Sequelize docs](https://sequelize.org/docs/v6/other-topics/migrations/)
+
+## API
+
+### Auth
+
+
+#### Sign Up
+
+```bash
+POST /auth/sign-up
+```
+
+Body params:
+```
+login: string,
+password: string
+```
+
+Returs JWT token
+
+#### Sign In
+
+```bash
+POST /auth/sign-in
+```
+
+Body params:
+```
+login: string,
+password: string
+```
+
+Returs JWT token
+
+### Users
+
+Add JWT token in `Authorization` header to access following endpoins
+
+#### Get User
+
+```
+GET /api/v1/get-user/[id]
+```
+
+Returns user
+
+#### Add User
+
+```
+POST /api/v1/add-user
+```
+
+Body params:
+```
+firstName: string,
+lastName: string,
+email: string,
+phone: string 
+```
+
+Retuns created user
+
