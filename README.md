@@ -1,5 +1,7 @@
 # users-manager
 
+**TODO**: add tests
+
 ## Setup
 
 Create and fill `.env` file by example of `.env.example`
