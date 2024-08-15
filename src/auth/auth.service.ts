@@ -19,15 +19,8 @@ export class AuthService {
       if (existingAccount) {
         throw new ConflictException('Account with this login already exists')
       }
-      const date = new Date();
       const hashedPassword = await this._hashPassword(password)
-      const account = Account.build({
-        login,
-        password: hashedPassword,
-        updatedAt: date,
-        createdAt: date,
-      })
-      await account.save()
+      const account = await this._accountsService.add(login, hashedPassword)
       return this._jwtService.signAsync({
         accountId: account.id,
       }, this._jwtOptions)

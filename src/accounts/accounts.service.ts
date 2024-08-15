@@ -11,4 +11,15 @@ export class AccountsService {
         where: { login }
     })
   }
+
+  add(login: string, password: string): Promise<Account> {
+      const date = new Date();
+    const account = Account.build({
+      login,
+      password ,
+      updatedAt: date,
+      createdAt: date,
+    })
+    return account.save()
+  }
 }
